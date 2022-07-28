@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="css/style.css">
+  <title>Weather Forecast</title>
+</head>
+<body>
+
+  <div data-system-type="metric" class="container">
+    
+    <div class="weather-current">
+      
+      <div class="weather-current__location">
+        <h2 data-city class="capital-text">Unknown</h2>
+        <p class="capital-text--sub"><span data-admin-division>Unknown</span>, <span data-country>?</span></p>
+      </div>
+
+      <div class="weather-current__temperature current-temperature">
+        <p class="current-temperature__avg-temp"><span data-current-avg-temp>?</span><span data-unit-temp>°C</span></p>
+        <p class="current-temperature__min-temp capital-text--sub">
+          <span class="material-symbols-outlined capital-text--sub">arrow_downward</span>
+          <span class="capital-text--sub"><span data-current-min-temp>?</span><span data-unit-temp>°C</span></span>
+        </p>
+        <p class="current-temperature__max-temp capital-text--sub">
+          <span class="material-symbols-outlined capital-text--sub">arrow_upward</span>
+          <span class="capital-text--sub"><span data-current-max-temp>?</span><span data-unit-temp>°C</span></span>
+        </p>
+      </div>
+
+      <div class="weather-current__condition current-condition">
+        <div class="current-condition__illustration">
+          <img data-current-img src="/img/unknown-weather.svg" alt="">
+        </div>
+        <div data-current-condition class="current-condition__description capital-text">?</div>
+      </div>
+
+      <div class="weather-current__details details">
+        <div class="details__item">
+          <!-- <span class="material-symbols-outlined">mood</span> -->
+          <h3 class="capital-text--sub">Feelslike</h3>
+          <span><span data-feelslike>?</span><span data-unit-temp>°C</span></span>
+        </div>
+
+        <div class="details__item">
+          <!-- <span class="material-symbols-outlined">air</span> -->
+          <h3 class="capital-text--sub">Wind</h3>
+          <span><span data-wind>?</span> <span data-unit-speed>km/h</span></span>
+        </div>
+
+        <div class="details__item">
+          <!-- <span class="material-symbols-outlined">humidity_mid</span> -->
+          <h3 class="capital-text--sub">Humidity</h3>
+          <span data-humidity>?</span>
+        </div>
+
+        <div class="details__item">
+          <!-- <span class="material-symbols-outlined">water</span> -->
+          <h3 class="capital-text--sub">Rain</h3>
+          <span><span data-rain>?</span> <span>%</span></span>
+        </div>
+      </div>
+
+    </div>
+
+    <nav data-nav class="main-nav">
+      <ul class="main-nav__container">
+        <li data-nav-item="hourly" class="main-nav__item main-nav__item--active capital-text--sub">Hourly</li>
+        <li data-nav-item="daily" class="main-nav__item capital-text--sub">2-Day</li>
+        <li data-nav-item="settings" class="main-nav__item capital-text--sub"><span class="material-symbols-outlined">settings</span></li>
+      </ul>
+    </nav>
+
+    <div class="tabs-container">
+      <div data-tab="hourly" class="tabs-container__tab weather-hourly tabs-container__tab--active">
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+        <div class="weather-hourly__hour hour">
+          <span data-hours class="hour__time">??:?? - ??:??</span>
+          <img data-hourly-img class="hour__img" src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="">
+          <p class="hour__avg-temp"><span data-hourly-avg-temp>?</span><span data-unit-temp>°C</span></p>
+          <span data-hourly-condition class="hour__condition">Unknown</span>
+        </div>
+
+      </div>
+
+      <div data-tab="daily" class="tabs-container__tab weather-daily">
+        <div class="weather-daily__day day">
+          <h3 data-day class="day__title">Day ?</h3>
+          
+          <div class="day__item">
+            <img data-daily-img src="/img/unknown-weather.svg" alt="">
+            <span data-daily-condition>Unknown</span>
+          </div>
+          
+          <div class="day__item">
+            <h4>Avg. Temp</h4>
+            <span><span data-daily-avg-temp>?</span><span data-unit-temp>°C</span></span>
+          </div>
+
+          <div class="day__item">
+            <h4>Min. Temp</h4>
+            <span><span data-daily-min-temp>?</span><span data-unit-temp>°C</span></span>
+          </div>
+
+          <div class="day__item">
+            <h4>Max. Temp</h4>
+            <span><span data-daily-max-temp>?</span><span data-unit-temp>°C</span></span>
+          </div>
+
+          <div class="day__item">
+            <h4>Chance of Rain</h4>
+            <span><span data-daily-rain>?</span>%</span>
+          </div>
+
+          <div class="day__item">
+            <h4>Wind</h4>
+            <span><span data-daily-wind>?</span> <span data-unit-speed>km/h</span></span>
+          </div>
+
+          <div class="day__item">
+            <h4>Humidity</h4>
+            <span data-daily-humidity>?</span>
+          </div>
+        </div>
+
+        <div class="weather-daily__day day">
+          <h3 data-day class="day__title">Day ?</h3>
+          
+          <div class="day__item">
+            <img data-daily-img src="/img/unknown-weather.svg" alt="">
+            <span data-daily-condition>Unknown</span>
+          </div>
+          
+          <div class="day__item">
+            <h4>Avg. Temp</h4>
+            <span><span data-daily-avg-temp>?</span><span data-unit-temp>°C</span></span>
+          </div>
+
+          <div class="day__item">
+            <h4>Min. Temp</h4>
+            <span><span data-daily-min-temp>?</span><span data-unit-temp>°C</span></span>
+          </div>
+
+          <div class="day__item">
+            <h4>Max. Temp</h4>
+            <span><span data-daily-max-temp>?</span><span data-unit-temp>°C</span></span>
+          </div>
+
+          <div class="day__item">
+            <h4>Chance of Rain</h4>
+            <span><span data-daily-rain>?</span>%</span>
+          </div>
+
+          <div class="day__item">
+            <h4>Wind</h4>
+            <span><span data-daily-wind>?</span> <span data-unit-speed>km/h</span></span>
+          </div>
+
+          <div class="day__item">
+            <h4>Humidity</h4>
+            <span data-daily-humidity>?</span>
+          </div>
+        </div>
+      </div>
+
+      <div data-tab="settings" class="tabs-container__tab weather-settings">
+        <div class="weather-settings__container weather-settings__container--search">
+          <p class="weather-settings__header capital-text">Weather for:</p>
+          <div class="weather-settings__wrapper">
+            <input data-search-field data-prev-value="" class="weather-settings__search-field capital-text--sub" type="text" name="city=search" id="search" placeholder="Enter your city here">
+            <button data-settings-button="search" class="weather-settings__search-button capital-text--sub">
+              <span class="material-symbols-outlined">
+                travel_explore
+              </span>
+            </button>
+            <div data-search-suggestions class="weather-settings__cities-array cities-array">
+              <div></div> 
+              <!-- generate suggestions here -->
+            </div>
+          </div>
+        </div>
+
+        <div class="weather-settings__container weather-settings__container--radio">
+          <p class="weather-settings__header capital-text">System of Measures</p>
+          <input data-settings-radio class="weather-settings__radio" type="radio" name="measurement-system" id="metric" checked>
+          <label data-settings-button="system-metric" class="weather-settings__radio--label" for="metric">Metric</label>
+          <input data-settings-radio class="weather-settings__radio" type="radio" name="measurement-system" id="eng">
+          <label data-settings-button="system-eng" class="weather-settings__radio--label" for="eng">Imperial</label>
+        </div>
+
+        <div class="weather-settings__copyright">
+          <a href="https://www.weatherapi.com/">Powered by WeatherAPI.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div data-loader data-loader-status="pending" class="loader">
+      <div data-loader-container="icons" class="loader__container-icons">
+        <span data-loader-icon="pending" class="loader__icon loader__icon--pending material-symbols-outlined">sync</span>
+        <span data-loader-icon="error" class="loader__icon loader__icon--error loader__icon--hidden material-symbols-outlined">sync_problem</span>
+        <span data-loader-icon="search-fail" class="loader__icon loader__icon--search-fail loader__icon--hidden material-symbols-outlined">not_listed_location</span>
+      </div>
+      <div data-loader-container="texts" class="loader__container-texts">
+        <span data-loader-text="pending" class="loader__text">Fetching data...</span>
+        <span data-loader-text="error" class="loader__text loader__text--error loader__text--hidden">Can't get data</span>
+        <span data-loader-text="search-fail" class="loader__text loader__text--search-fail loader__text--hidden">Unknown place!</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>let isFake = true;</script>
+  <script src="js/ui-elements.js"></script>
+  <script src="js/fake-data.js"></script>
+  <script src="js/get-data.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>

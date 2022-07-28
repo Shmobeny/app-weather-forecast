@@ -1,0 +1,92 @@
+@use 'mixins';
+
+*, *::before, *::after {box-sizing: border-box;}
+
+html, body {
+  height: 100%;
+  font-family: 'Roboto Slab', serif;
+}
+
+body {
+  @include mixins.centered-position;
+  padding: 5px;
+  background: rgb(90,34,195);
+  background: linear-gradient(315deg, rgba(90,34,195,1) 0%, rgba(45,217,253,1) 100%);
+  background-attachment: fixed; 
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 0 0 15px 15px;
+}
+
+.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 250px 50px minmax(157px, 1fr);
+  width: 600px;
+  min-height: 700px;
+  background-color: rgba(240, 248, 255, 0.5);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.capital-text,
+.capital-text--sub {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.capital-text--sub {
+  font-size: 20px;
+  text-transform: none;
+}
+
+// max-width
+@media (max-width: 600px) {
+  body {
+    align-items: flex-start;
+  }
+
+  .container {
+    min-height: 100%;
+  }
+}
+
+@media (max-width: 435px) {
+  .capital-text--sub {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .capital-text {
+    font-size: 18px;
+  }
+
+  .capital-text--sub {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 260px) {
+  .capital-text {
+    font-size: 14px;
+  }
+
+  .capital-text--sub {
+    font-size: 12px;
+  }
+}
+
+// max-height
+@media (max-height: 700px) {
+  .container {
+    min-height: 100%;
+  }
+}
+
+@media (max-height: 700px) {
+  body {
+    align-items: flex-start;
+  }
+}
