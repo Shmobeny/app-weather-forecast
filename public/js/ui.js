@@ -1,6 +1,8 @@
+let uiElements = require('./ui-elements');
+
 document.documentElement.onselectstart = () => false;
 
-navBar.addEventListener("pointerup", tabsNavigation, {passive: true});
+uiElements.navBar.addEventListener("pointerup", tabsNavigation, {passive: true});
 
 loader.body.addEventListener("pointerup", retryFetching, {passive: true});
 

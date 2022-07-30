@@ -1,3 +1,5 @@
+require('./ui-elements');
+
 let coords = null;
 let forecast = null;
 let search = null;
