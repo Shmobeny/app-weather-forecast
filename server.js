@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const API_KEY = process.env.API_KEY;
+const PORT = process.env.PORT || 3000;
 
 const axios = require('axios');
 const express = require('express');
@@ -76,6 +77,6 @@ app.post('/weather-forecast', (req, res) => {
 
 });
 
-app.listen(3000, () => {
-  console.log("server started");
+app.listen(PORT, () => {
+  console.log("Server started at port: " + PORT);
 });
