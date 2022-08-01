@@ -3,8 +3,8 @@
   "short_name": "Weather Forecast",
   "start_url": "/index.html",
   "display": "standalone",
-  "backgrond-color": "smokewhite",
-  "theme-color": "smokewhite",
+  "background_color": "rgb(90,34,195)",
+  "theme_color": "rgb(90,34,195)",
   "orientation": "portrait-primary",
   "icons": [
     {
