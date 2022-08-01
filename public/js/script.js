@@ -102,9 +102,12 @@ async function getData(query = false) {
   }
 
   async function getPosition(query) {
-    if (query) throw new Error();
-
     let result = null;
+    
+    if (query) {
+      result = await serverRequest("/location", query).catch(err => console.log(err));
+      return result;
+    }
     
     let coords = null;
     let location = null;
@@ -114,7 +117,7 @@ async function getData(query = false) {
         navigator.geolocation.getCurrentPosition(res, rej);
       });
 
-      location = await (await fetch('http://api.db-ip.com/v2/free/self')).json();
+      location = await (await fetch('https://api.db-ip.com/v2/free/self')).json();
       
       result = {
         coordinates: {
@@ -129,7 +132,7 @@ async function getData(query = false) {
           id: location.countryCode,
         }
       };
-      
+
     } catch(err) {
       console.log(err);
       result = await serverRequest("/location", query).catch(err => console.log(err));
