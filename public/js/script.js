@@ -89,7 +89,8 @@ async function getData(query = false) {
   } else {
     // coords = await serverRequest("/location", query).catch(err => console.log(err));
     coords = await getPosition(query);
-    if (checkIsValidCoords(coords) === false) return;
+    console.log(coords);
+    // if (checkIsValidCoords(coords) === false) return;
     forecast = await serverRequest("/weather-forecast", coords).catch(err => console.log(err));
   }
 
@@ -102,13 +103,33 @@ async function getData(query = false) {
 
   async function getPosition(query) {
     if (query) throw new Error();
+
+    let result = null;
     
-    let result = null
+    let coords = null;
+    let location = null;
     
     try {
-      result = await new Promise((res, rej) => {
+      coords = await new Promise((res, rej) => {
         navigator.geolocation.getCurrentPosition(res, rej);
       });
+
+      location = await (await fetch('http://api.db-ip.com/v2/free/self')).json();
+      
+      result = {
+        coordinates: {
+          latitude: coords.coords.latitude,
+          longitude: coords.coords.longitude
+        },
+        name: location.city,
+        adminDivision1: {
+          name: location.stateProv
+        },
+        country: {
+          id: location.countryCode,
+        }
+      };
+      
     } catch(err) {
       console.log(err);
       result = await serverRequest("/location", query).catch(err => console.log(err));
