@@ -87,10 +87,9 @@ async function getData(query = false) {
     if (checkIsValidCoords(coords) === false) return;
     forecast = await getFakeData(forecastFake, 2000).catch(err => console.log(err));
   } else {
-    // coords = await serverRequest("/location", query).catch(err => console.log(err));
     coords = await getPosition(query);
     console.log(coords);
-    // if (checkIsValidCoords(coords) === false) return;
+    if (checkIsValidCoords(coords) === false) return;
     forecast = await serverRequest("/weather-forecast", coords).catch(err => console.log(err));
   }
 
