@@ -87,7 +87,8 @@ async function getData(query = false) {
     if (checkIsValidCoords(coords) === false) return;
     forecast = await getFakeData(forecastFake, 2000).catch(err => console.log(err));
   } else {
-    coords = await serverRequest("/location", query).catch(err => console.log(err));
+    // coords = await serverRequest("/location", query).catch(err => console.log(err));
+    coords = await getPosition(query);
     if (checkIsValidCoords(coords) === false) return;
     forecast = await serverRequest("/weather-forecast", coords).catch(err => console.log(err));
   }
@@ -97,6 +98,23 @@ async function getData(query = false) {
     loader.body.dataset.loaderStatus = "success";
   } catch(err) {
     loader.body.dataset.loaderStatus = "error";
+  }
+
+  async function getPosition(query) {
+    if (query) throw new Error();
+    
+    let result = null
+    
+    try {
+      result = await new Promise((res, rej) => {
+        navigator.geolocation.getCurrentPosition(res, rej);
+      });
+    } catch(err) {
+      console.log(err);
+      result = await serverRequest("/location", query).catch(err => console.log(err));
+    }
+  
+    return result;
   }
 
   async function getFakeData(fakeData, delay) {
