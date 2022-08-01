@@ -133,6 +133,10 @@ async function getData(query = false) {
         }
       };
 
+      if (result.name.indexOf("(") > 0) {
+        result.name = result.name.slice(0, (result.name.indexOf("(") - 1));
+      }
+
     } catch(err) {
       console.log(err);
       result = await serverRequest("/location", query).catch(err => console.log(err));
