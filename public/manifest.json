@@ -1,51 +1,54 @@
 {
-  "name": "Horly and Daily Weather Forecasts",
-  "short_name": "Weather Forecast",
   "start_url": "/index.html",
+  "name": "Weather Forecast: Don't forget umbrella",
+  "short_name": "Weather Forecast",
+  "description": "Current, hourly and daily waether forecast",
   "display": "standalone",
-  "background_color": "rgb(45,217,253)",
-  "theme_color": "rgb(45,217,253)",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/img/app-icons/icon-512x512.png",
+      "src": "img/app-icons/maskable_icon_x48.png",
+      "sizes": "48x48",
       "type": "image/png",
-      "sizes": "512x512"
+      "purpose": "any maskable"
     },
     {
-      "src": "/img/app-icons/icon-384x384.png",
+      "src": "img/app-icons/maskable_icon_x72.png",
+      "sizes": "72x72",
       "type": "image/png",
-      "sizes": "384x384"
+      "purpose": "any maskable"
     },
     {
-      "src": "/img/app-icons/icon-192x192.png",
+      "src": "img/app-icons/maskable_icon_x96.png",
+      "sizes": "96x96",
       "type": "image/png",
-      "sizes": "192x192"
+      "purpose": "any maskable"
     },
     {
-      "src": "/img/app-icons/icon-152x152.png",
+      "src": "img/app-icons/maskable_icon_x128.png",
+      "sizes": "128x128",
       "type": "image/png",
-      "sizes": "152x152"
+      "purpose": "any maskable"
     },
     {
-      "src": "/img/app-icons/icon-144x144.png",
+      "src": "img/app-icons/maskable_icon_x192.png",
+      "sizes": "192x192",
       "type": "image/png",
-      "sizes": "144x144"
+      "purpose": "any maskable"
     },
     {
-      "src": "/img/app-icons/icon-128x128.png",
+      "src": "img/app-icons/maskable_icon_x384.png",
+      "sizes": "384x384",
       "type": "image/png",
-      "sizes": "128x128"
+      "purpose": "any maskable"
     },
     {
-      "src": "/img/app-icons/icon-96x96.png",
+      "src": "img/app-icons/maskable_icon_x512.png",
+      "sizes": "512x512",
       "type": "image/png",
-      "sizes": "96x96"
-    },
-    {
-      "src": "/img/app-icons/icon-72x72.png",
-      "type": "image/png",
-      "sizes": "72x72"
+      "purpose": "any maskable"
     }
   ]
 }
