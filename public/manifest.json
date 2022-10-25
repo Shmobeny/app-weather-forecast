@@ -33,7 +33,7 @@
       "purpose": "maskable"
     },
     {
-      "src": "img/app-icons/apple_icon_x144.png",
+      "src": "img/app-icons/apple_icon_144x144.png",
       "sizes": "144x144",
       "type": "image/png",
       "purpose": "maskable"
