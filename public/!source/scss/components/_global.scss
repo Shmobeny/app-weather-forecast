@@ -9,7 +9,6 @@ html, body {
 
 body {
   @include mixins.centered-position;
-  padding: 5px;
   background: rgb(90,34,195);
   background: linear-gradient(315deg, rgba(90,34,195,1) 0%, rgba(45,217,253,1) 100%);
   background-attachment: fixed;
@@ -23,7 +22,7 @@ body {
   width: 600px;
   min-height: 700px;
   background-color: rgba(240, 248, 255, 0.5);
-  border-radius: 40px;
+  // border-radius: 40px;
   overflow: hidden;
 }
 

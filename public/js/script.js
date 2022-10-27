@@ -87,12 +87,27 @@ async function getData(query = false) {
     if (checkIsValidCoords(coords) === false) return;
     forecast = await getFakeData(forecastFake, 2000).catch(err => console.log(err));
   } else {
-    coords = await getPosition(query);
-    if (checkIsValidCoords(coords) === false) return;
+    switch (query) {
+      case false:
+        coords = await JSON.parse(window.localStorage.getItem("LOCATION"));
+        if (coords === null) coords = await getPosition(query);
+        break;
+      default:
+        coords = await getPosition(query);
+    }
+    
+    if (query !== false && checkIsValidCoords(coords) === false) return;
+    
     forecast = await serverRequest("/weather-forecast", coords).catch(err => console.log(err));
   }
 
   try {
+    if (coords === undefined || forecast === undefined) {
+      coords = await JSON.parse(window.localStorage.getItem("LOCATION"));
+      forecast = await JSON.parse(window.localStorage.getItem("WEATHER_FORECAST"));
+      alert("Used cached data!");
+    }
+
     updateWeather(coords, forecast, "full");
     loader.body.dataset.loaderStatus = "success";
   } catch(err) {
@@ -101,7 +116,7 @@ async function getData(query = false) {
 
   async function getPosition(query) {
     let result = null;
-    
+
     if (query) {
       result = await serverRequest("/location", query).catch(err => console.log(err));
       return result;
@@ -135,11 +150,13 @@ async function getData(query = false) {
         result.name = result.name.slice(0, (result.name.indexOf("(") - 1));
       }
 
+      cachingData("LOCATION", result);
+
     } catch(err) {
       console.log(err);
       result = await serverRequest("/location", query).catch(err => console.log(err));
     }
-  
+
     return result;
   }
 
@@ -155,7 +172,8 @@ async function getData(query = false) {
   function checkIsValidCoords(coords) {
     try {
       coords.name;
-    } catch (e) {
+    } catch (err) {
+      console.log(err)
       loader.body.dataset.loaderStatus = "search-fail";
       return false;
     }
@@ -177,9 +195,34 @@ async function serverRequest(type, query) {
     body: JSON.stringify(bodyRequest)
   })
     .then(res => res.json())
-    .then(data => result = data);
+    .then(data => result = data)
+    .catch(err => {
+      return null;
+    });
 
-  if (type !== "/search" && result.length > 1) result = result[0];
+  //if (type !== "/search" && result.length > 1) result = result[0];
+  
+  if (type !== "/search") {
+    switch (true) {
+      case result.length >= 1:
+        result = result[0];
+        break;
+      case result.length === 0:
+        return null;
+    }
+  }
+
+  // caching result to localStorage of the app
+  switch (type) {
+    case "/location":
+      cachingData("LOCATION", result);
+      break;
+    case "/weather-forecast":
+      cachingData("WEATHER_FORECAST", result);
+      break;
+  }
+
+  console.log(result);
 
   return result;
 }
@@ -309,6 +352,10 @@ function updateWeather(coords, weatherData, type) {
   }
 }
 
+function cachingData(key, data) {
+  window.localStorage.setItem(key, JSON.stringify(data));
+}
+
 // UI LOGIC
 
 document.documentElement.onselectstart = () => false;
@@ -359,17 +406,21 @@ settingsButtons["search"].addEventListener("pointerup", e => searchCity(), {pass
 settingsButtons["radio"][0].addEventListener("change", () => appContainer.dataset.systemType = "metric", {passive: true});
 settingsButtons["radio"][1].addEventListener("change", () => appContainer.dataset.systemType = "eng", {passive: true});
 
+setMeasures()
 setUnits();
 setHours();
 
 let weatherObserver = new MutationObserver(rec => {
+  console.log(rec)
+  cachingData("MEASURES", appContainer.dataset.systemType);
   setUnits();
-  updateWeather(coords, forecast, "short");
+  if (rec[0].oldValue !== "pending") updateWeather(coords, forecast, "short");
 });
 
 weatherObserver.observe(appContainer, {
   attributes: true,
-  attributeFilter: ["data-system-type"]
+  attributeFilter: ["data-system-type"],
+  attributeOldValue: true
 });
 
 let loaderObserver = new MutationObserver(rec => {
@@ -461,6 +512,26 @@ function setHours() {
     initialHour++;
     if (initialHour === 24) initialHour = 0;
   }
+}
+
+async function setMeasures() {
+  let cachedSystem = await JSON.parse(window.localStorage.getItem("MEASURES"));
+  
+  switch (cachedSystem) {
+    case "metric":
+      settingsButtons["radio"][0].checked = "true";
+      break;
+    case "eng":
+      settingsButtons["radio"][1].checked = "true";
+      break;
+    default:
+      cachingData("MEASURES", "metric");
+      appContainer.dataset.systemType = "metric";
+      settingsButtons["radio"][0].checked = "true";
+      return;
+  }
+
+  appContainer.dataset.systemType = cachedSystem;
 }
 
 function setUnits() {
@@ -561,7 +632,6 @@ function getCitiesSuggestions(e) {
       search = searchFake;
     } else {
       search = await serverRequest("/search", searchField.value);
-      // search = await getSearchSuggestions(searchField.value);
     }
     
     searchSuggestions.innerHTML = ``;
