@@ -84,25 +84,18 @@ async function getData(query = false) {
 
   loader.body.dataset.loaderStatus = "pending";
 
-  if (isFake) {
-    //badData coordsFake forecastFake
-    coords = await getFakeData(coordsFake, 1000).catch(err => console.log(err));
-    if (checkIsValidCoords(coords) === false) return;
-    forecast = await getFakeData(forecastFake, 2000).catch(err => console.log(err));
-  } else {
-    switch (query) {
-      case false:
-        coords = await JSON.parse(window.localStorage.getItem("LOCATION"));
-        if (coords === null) coords = await getPosition(query);
-        break;
-      default:
-        coords = await getPosition(query);
-    }
-    
-    if (query !== false && checkIsValidCoords(coords) === false) return;
-    
-    forecast = await serverRequest("/weather-forecast", coords).catch(err => console.log(err));
+  switch (query) {
+    case false:
+      coords = await JSON.parse(window.localStorage.getItem("LOCATION"));
+      if (coords === null) coords = await getPosition(query);
+      break;
+    default:
+      coords = await getPosition(query);
   }
+  
+  if (query !== false && checkIsValidCoords(coords) === false) return;
+  
+  forecast = await serverRequest("/weather-forecast", coords).catch(err => console.log(err));
 
   try {
     if (coords === undefined || forecast === undefined) {
@@ -121,7 +114,7 @@ async function getData(query = false) {
         
         setTimeout(() => {
           loader.body.dataset.loaderStatus = "success";
-        }, 5000)
+        }, 5000);
         
         break;
       default:
@@ -672,11 +665,7 @@ function getCitiesSuggestions(e) {
 
     prevString = searchField.value;
     
-    if (isFake) {
-      search = searchFake;
-    } else {
-      search = await serverRequest("/search", searchField.value);
-    }
+    search = await serverRequest("/search", searchField.value);
     
     searchSuggestions.innerHTML = ``;
     searchSuggestions.classList.add("cities-array--rolled");
@@ -733,5 +722,3 @@ function retryFetching(e) {
       break;
   }
 }
-
-console.log("Fake data: " + isFake);
