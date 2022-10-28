@@ -27,6 +27,10 @@
     &--search-fail {
       color: red;
     }
+
+    &--cache-warn {
+      color: blue;
+    }
   }
 
   &__icon {
@@ -52,7 +56,8 @@
     }
 
     &--error,
-    &--search-fail {
+    &--search-fail,
+    &--cache-warn {
       position: relative;
 
       &::after {
@@ -69,6 +74,12 @@
     &--search-fail {
       &::after {
         content: "Click to comeback to the search";
+      }
+    }
+
+    &--cache-warn {
+      &::after {
+        content: "Location and Weather info was taken from previous session";
       }
     }
   }

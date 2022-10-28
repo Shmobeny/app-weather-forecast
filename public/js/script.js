@@ -12,11 +12,13 @@ const loader = {
     "pending": document.querySelector(`[data-loader-icon="pending"]`),
     "error": document.querySelector(`[data-loader-icon="error"]`),
     "searchFail": document.querySelector(`[data-loader-icon="search-fail"]`),
+    "cacheWarn": document.querySelector(`[data-loader-icon="cache-warn"]`),
   },
   "texts": {
     "pending": document.querySelector(`[data-loader-text="pending"]`),
     "error": document.querySelector(`[data-loader-text="error"]`),
     "searchFail": document.querySelector(`[data-loader-text="search-fail"]`),
+    "cacheWarn": document.querySelector(`[data-loader-text="cache-warn"]`),
   }
 }
 
@@ -74,6 +76,7 @@ const units = {
 let coords = null;
 let forecast = null;
 let search = null;
+let dataIsCached = false;
 
 getData();
 
@@ -105,11 +108,33 @@ async function getData(query = false) {
     if (coords === undefined || forecast === undefined) {
       coords = await JSON.parse(window.localStorage.getItem("LOCATION"));
       forecast = await JSON.parse(window.localStorage.getItem("WEATHER_FORECAST"));
-      alert("Used cached data!");
+      dataIsCached = true;
+      //alert("Used cached data!");
+
+      Notification.requestPermission().then(perm => {
+        if (perm === "granted") {
+          new Notification("Used cached data!", {
+            body: "Location and Weather info was taken from previous session"
+          });
+        }
+      });
     }
 
     updateWeather(coords, forecast, "full");
-    loader.body.dataset.loaderStatus = "success";
+    
+    switch (dataIsCached) {
+      case true:
+        loader.body.dataset.loaderStatus = "cache-warn";
+        
+        setTimeout(() => {
+          loader.body.dataset.loaderStatus = "success";
+        }, 5000)
+        
+        break;
+      default:
+        loader.body.dataset.loaderStatus = "success";
+    }
+    
   } catch(err) {
     loader.body.dataset.loaderStatus = "error";
   }
@@ -406,7 +431,7 @@ settingsButtons["search"].addEventListener("pointerup", e => searchCity(), {pass
 settingsButtons["radio"][0].addEventListener("change", () => appContainer.dataset.systemType = "metric", {passive: true});
 settingsButtons["radio"][1].addEventListener("change", () => appContainer.dataset.systemType = "eng", {passive: true});
 
-setMeasures()
+setMeasures();
 setUnits();
 setHours();
 
@@ -428,6 +453,22 @@ let loaderObserver = new MutationObserver(rec => {
     case (rec[0].target.dataset.loaderStatus === "success"):
       loader.body.classList.add("loader--hidden");
       break;
+
+    case (rec[0].target.dataset.loaderStatus === "cache-warn"):
+      loader.containers.icons.classList.add("loader__container-icons--cache-warn");
+
+      loader.icons.pending.classList.add("loader__icon--hidden");
+      loader.texts.pending.classList.add("loader__text--hidden");
+
+      loader.icons.searchFail.classList.add("loader__icon--hidden");
+      loader.texts.searchFail.classList.add("loader__text--hidden");
+
+      loader.icons.error.classList.add("loader__icon--hidden");
+      loader.texts.error.classList.add("loader__text--hidden");
+      
+      loader.icons.cacheWarn.classList.remove("loader__icon--hidden");
+      loader.texts.cacheWarn.classList.remove("loader__text--hidden");
+      break;
     
     case (rec[0].target.dataset.loaderStatus === "error"):
       loader.containers.icons.classList.add("loader__container-icons--error");
@@ -437,6 +478,9 @@ let loaderObserver = new MutationObserver(rec => {
 
       loader.icons.searchFail.classList.add("loader__icon--hidden");
       loader.texts.searchFail.classList.add("loader__text--hidden");
+
+      loader.icons.cacheWarn.classList.add("loader__icon--hidden");
+      loader.texts.cacheWarn.classList.add("loader__text--hidden");
 
       loader.icons.error.classList.remove("loader__icon--hidden");
       loader.texts.error.classList.remove("loader__text--hidden");
@@ -450,6 +494,9 @@ let loaderObserver = new MutationObserver(rec => {
 
       loader.icons.error.classList.add("loader__icon--hidden");
       loader.texts.error.classList.add("loader__text--hidden");
+
+      loader.icons.cacheWarn.classList.add("loader__icon--hidden");
+      loader.texts.cacheWarn.classList.add("loader__text--hidden");
 
       loader.icons.searchFail.classList.remove("loader__icon--hidden");
       loader.texts.searchFail.classList.remove("loader__text--hidden");
@@ -469,6 +516,9 @@ let loaderObserver = new MutationObserver(rec => {
 
       loader.icons.error.classList.add("loader__icon--hidden");
       loader.texts.error.classList.add("loader__text--hidden");
+
+      loader.icons.cacheWarn.classList.add("loader__icon--hidden");
+      loader.texts.cacheWarn.classList.add("loader__text--hidden");
       break;
   }
 });
@@ -683,6 +733,9 @@ function retryFetching(e) {
       loader.body.dataset.loaderStatus = "success";
       tabsNavigation(e, document.querySelector(`[data-nav-item="settings"]`));
       setTimeout(() => searchField.focus(), 1000);
+      break;
+    case e.target.closest(".loader").dataset.loaderStatus === "cache-warn":
+      loader.body.dataset.loaderStatus = "success";
       break;
   }
 }

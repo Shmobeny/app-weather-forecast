@@ -833,6 +833,9 @@ body {
 .loader__container-icons--error, .loader__container-icons--search-fail {
   color: red;
 }
+.loader__container-icons--cache-warn {
+  color: blue;
+}
 .loader__icon {
   font-size: 100px;
   margin-bottom: 15px;
@@ -852,10 +855,10 @@ body {
 .loader__text--hidden {
   display: none;
 }
-.loader__text--error, .loader__text--search-fail {
+.loader__text--error, .loader__text--search-fail, .loader__text--cache-warn {
   position: relative;
 }
-.loader__text--error::after, .loader__text--search-fail::after {
+.loader__text--error::after, .loader__text--search-fail::after, .loader__text--cache-warn::after {
   content: "Click to retry";
   position: relative;
   top: 15px;
@@ -866,6 +869,9 @@ body {
 }
 .loader__text--search-fail::after {
   content: "Click to comeback to the search";
+}
+.loader__text--cache-warn::after {
+  content: "Location and Weather info was taken from previous session";
 }
 
 @-webkit-keyframes loader-rotate {
