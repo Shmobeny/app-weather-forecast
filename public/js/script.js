@@ -111,13 +111,13 @@ async function getData(query = false) {
       dataIsCached = true;
       //alert("Used cached data!");
 
-      Notification.requestPermission().then(perm => {
-        if (perm === "granted") {
-          new Notification("Used cached data!", {
-            body: "Location and Weather info was taken from previous session"
-          });
-        }
-      });
+      // Notification.requestPermission().then(perm => {
+      //   if (perm === "granted") {
+      //     new Notification("Used cached data!", {
+      //       body: "Location and Weather info was taken from previous session"
+      //     });
+      //   }
+      // });
     }
 
     updateWeather(coords, forecast, "full");
