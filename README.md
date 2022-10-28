@@ -12,4 +12,4 @@ Simple Weather App with hourly and daily forecasts.
 - **adaptive design:** app looks good at any screen size - mobile, or desktop
 - **offline experience:** app use PWA technology, which gives opportunity to install it on any modern device and use it offline
 
-![App screenshot](https://raw.githubusercontent.com/Shmobeny/app-weather-forecast/main/app_screenshot.png "This is how app looks on my desktop ;)")
+![App screenshot](https://raw.githubusercontent.com/Shmobeny/app-weather-forecast/main/app-screenshot.png "This is how app looks on my desktop ;)")
