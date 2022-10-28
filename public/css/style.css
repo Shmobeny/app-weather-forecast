@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap");
 html, body,
 h1, h2, h3, h4,
@@ -822,6 +823,24 @@ body {
   opacity: 0.95;
   z-index: 9999;
 }
+.loader[data-loader-status=search-fail]::after, .loader[data-loader-status=cache-warn]::after {
+  content: "✖";
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 100%;
+  width: 60px;
+  height: 60px;
+  font-size: 45px;
+  line-height: 60px;
+  -webkit-transform: translateX(-80px);
+          transform: translateX(-80px);
+  -webkit-transition: color 150ms ease-in-out;
+  transition: color 150ms ease-in-out;
+}
+.loader[data-loader-status=search-fail]:hover::after, .loader[data-loader-status=cache-warn]:hover::after {
+  color: red;
+}
 .loader--hidden {
   display: none;
 }
@@ -868,7 +887,7 @@ body {
   font-size: 18px;
 }
 .loader__text--search-fail::after {
-  content: "Click to comeback to the search";
+  content: "Try another search request";
 }
 .loader__text--cache-warn::after {
   content: "Location and Weather info was taken from previous session";

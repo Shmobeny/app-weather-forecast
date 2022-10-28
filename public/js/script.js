@@ -109,15 +109,8 @@ async function getData(query = false) {
       coords = await JSON.parse(window.localStorage.getItem("LOCATION"));
       forecast = await JSON.parse(window.localStorage.getItem("WEATHER_FORECAST"));
       dataIsCached = true;
-      //alert("Used cached data!");
-
-      // Notification.requestPermission().then(perm => {
-      //   if (perm === "granted") {
-      //     new Notification("Used cached data!", {
-      //       body: "Location and Weather info was taken from previous session"
-      //     });
-      //   }
-      // });
+    } else {
+      dataIsCached = false;
     }
 
     updateWeather(coords, forecast, "full");
@@ -507,6 +500,7 @@ let loaderObserver = new MutationObserver(rec => {
 
       loader.containers.icons.classList.remove("loader__container-icons--error");
       loader.containers.icons.classList.remove("loader__container-icons--search-fail");
+      loader.containers.icons.classList.remove("loader__container-icons--cache-warn");
 
       loader.icons.pending.classList.remove("loader__icon--hidden");
       loader.texts.pending.classList.remove("loader__text--hidden");
